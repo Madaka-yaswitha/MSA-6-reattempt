@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: customer-compose
+spec: 
+  selector:
+    matchLabels:
+      app: customer-compose
+  replicas: 2
+  template:
+    metadata:
+      labels: 
+        app: customer-compose
+    spec: 
+      containers: 
+        - name: customer-compose
+          image: yaswitha/final_msa:final_msa
+          imagePullPolicy: IfNotPresent
+          ports: 
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service 
+metadata: 
+  name: customer-compose
+spec:
+  selector:
+    app: customer-compose  
+  ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 80
+  type: LoadBalancer    
+            
+            

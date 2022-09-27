@@ -1,0 +1,6 @@
+version: '3.8'
+services: 
+  final_msa: 
+       build: .
+       ports:
+         - 80:80
